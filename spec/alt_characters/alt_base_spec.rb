@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # http://www5d.biglobe.ne.jp/stssk/rfc/rfc4648j.html
 
 RSpec.describe AltCharacters::AltBase do

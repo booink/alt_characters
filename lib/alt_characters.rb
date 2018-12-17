@@ -1,5 +1,7 @@
-require "alt_characters/version"
-require "alt32"
+# frozen_string_literal: true
+
+require 'alt_characters/version'
+require 'alt32'
 
 module AltCharacters
   class << self
