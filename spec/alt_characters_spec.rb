@@ -47,4 +47,22 @@ RSpec.describe AltCharacters do
     expect { AltCharacters.alt32_decode('!#$%&') }.to raise_error Alt32::DecodeError
     expect { AltCharacters.alt32_decode('あいうえお') }.to raise_error Alt32::DecodeError
   end
+
+  describe 'encodable characters' do
+    it "Just length" do
+      encodable_characters = "abcdefghijklmnopqrstuvwxyz012345"
+      expect(AltCharacters::Alt32.new(characters: encodable_characters)).to be_a AltCharacters::Alt32
+    end
+
+    it "Not enough" do
+      encodable_characters = "abcdefghijklmnopqrstuvwxyz"
+      expect { AltCharacters::Alt32.new(characters: encodable_characters) }.to raise_error AltCharacters::AltBase::EncodableCharactersError
+    end
+
+    it "Too many" do
+      encodable_characters = "abcdefghijklmnopqrstuvwxyz0123456789"
+      expect { AltCharacters::Alt32.new(characters: encodable_characters) }.to output("[warn] Too many characters specified. The last 4 characters are not used\n").to_stderr
+      expect(AltCharacters::Alt32.new(characters: encodable_characters)).to be_a AltCharacters::Alt32
+    end
+  end
 end
