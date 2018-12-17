@@ -1,0 +1,13 @@
+AllCops:
+  TargetRubyVersion: 2.5
+
+Documentation:
+  Enabled: false
+
+Metrics/BlockLength:
+  Exclude:
+    - 'Guardfile'
+    - 'spec/**/*.rb'
+
+Metrics/LineLength:
+  Max: 120
