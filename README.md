@@ -1,8 +1,6 @@
 # AltCharacters
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/alt_characters`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+alt_characters alternate base32 without numeric characters and padding
 
 ## Installation
 
@@ -22,7 +20,44 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+### Quick start
+
+```ruby
+require 'alt_characters'
+
+encoded_text = AltCharacters.alt32_encode('foo')
+# => "Nmhgw"
+
+AltCharacters.alt32_decode(encoded_text)
+# => "foo"
+```
+
+or
+
+```ruby
+require 'alt_characters'
+
+encoded_text = Alt32.new.encode('foo')
+# => "Nmhgw"
+
+Alt32.new.decode(encoded_text)
+# => "foo"
+```
+
+
+### Modifying encodable characters
+
+```ruby
+require 'alt_characters'
+
+encodable_characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567'
+
+encoded_text = Alt32.new(characters: encodable_characters).encode('foo')
+# => "MZXW6"
+
+Alt32.new(characters: encodable_characters).decode(encoded_text)
+# => "foo"
+```
 
 ## Development
 
@@ -32,7 +67,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/alt_characters. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/booink/alt_characters. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 ## License
 

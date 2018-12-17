@@ -1,5 +1,3 @@
-# encoding: utf-8
-
 RSpec.describe AltCharacters do
   it "has a version number" do
     expect(AltCharacters::VERSION).not_to be nil
