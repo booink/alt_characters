@@ -5,7 +5,7 @@ module AltCharacters
     class DecodeError < StandardError; end
     class EncodableCharactersError < StandardError; end
 
-    BYTE = 8 # bit
+    OCTET = 8 # bit
 
     def initialize(length, characters: nil, padding_character: '=')
       @length = length
@@ -51,7 +51,7 @@ module AltCharacters
     private
 
     def missing_chunks(characters)
-      number_of_group_characters = @logarithm.lcm(BYTE) / @logarithm
+      number_of_group_characters = @logarithm.lcm(OCTET) / @logarithm
       modulo = characters.count % number_of_group_characters
       modulo.zero? ? 0 : number_of_group_characters - modulo
     end
